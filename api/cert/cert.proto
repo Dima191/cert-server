@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package tls;
+
+option go_package = "/implementation";
+
+
+service Cert{
+  rpc Cert(CertRequest) returns (CertResponse);
+  rpc CertStream(stream CertRequest) returns (stream CertResponse);
+}
+
+message CertRequest{
+  string domain = 1;
+}
+
+message CertResponse{
+  bytes PrivateKey = 1;
+  bytes CertificateChain = 2;
+}
